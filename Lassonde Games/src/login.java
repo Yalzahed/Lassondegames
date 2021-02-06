@@ -58,13 +58,11 @@ public class login extends JFrame implements ActionListener {
         container.add(loginButton);
         container.add(resetButton);
     }
-
     public void addActionEvent() {
         loginButton.addActionListener(this);
         resetButton.addActionListener(this);
         showPassword.addActionListener(this);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -75,13 +73,25 @@ public class login extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
            try{
-               Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo", "root", "password");
-               String query = "Select * from account Where user_name='" + userText + "' and password='" + pwdText + "'";
+        	   Connection connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
+               String query = "Select * from account Where user_='" + userText + "' and password='" + pwdText + "'";
                Statement sta = connection.createStatement();
                ResultSet x = sta.executeQuery(query);
                
             if (x.next()) {
                 JOptionPane.showMessageDialog(this, "Login Successful ");
+                String ifNurse = "Select * from account Where user_='" + userText + "' and password='" + pwdText + "'" +" and account_type='Nurse'";
+                ResultSet y = sta.executeQuery(ifNurse);
+                if(y.next()) {
+                	this.setVisible(false);
+                	new Home_Nurse_v2();
+                	connection.close();
+                }
+                else {
+                	this.setVisible(false);
+                	new familypage();
+                	connection.close();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }

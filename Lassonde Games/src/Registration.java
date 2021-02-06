@@ -19,11 +19,11 @@ import javax.swing.border.EmptyBorder;
 public class Registration extends JFrame {
 	  private static final long serialVersionUID = 1L;
 	    private JPanel contentPane;
-	    private JTextField firstname;
-	    private JTextField lastname;
-	    private JTextField email;
+	    private JTextField name;
+	    private JTextField patientName;
+	    private JTextField accountType;
 	    private JTextField username;
-	    private JTextField mob;
+	    private JTextField email;
 	    private JPasswordField passwordField;
 	    private JButton btnNewButton;
 	
@@ -43,12 +43,12 @@ public class Registration extends JFrame {
 	        lblNewUserRegister.setBounds(362, 52, 325, 50);
 	        contentPane.add(lblNewUserRegister);
 
-	        JLabel lblName = new JLabel("First name");
+	        JLabel lblName = new JLabel("Name");
 	        lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	        lblName.setBounds(58, 152, 99, 43);
 	        contentPane.add(lblName);
 
-	        JLabel lblNewLabel = new JLabel("Last name");
+	        JLabel lblNewLabel = new JLabel("Patient");
 	        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	        lblNewLabel.setBounds(58, 243, 110, 29);
 	        contentPane.add(lblNewLabel);
@@ -58,17 +58,17 @@ public class Registration extends JFrame {
 	        lblEmailAddress.setBounds(58, 324, 124, 36);
 	        contentPane.add(lblEmailAddress);
 
-	        firstname = new JTextField();
-	        firstname.setFont(new Font("Tahoma", Font.PLAIN, 32));
-	        firstname.setBounds(214, 151, 228, 50);
-	        contentPane.add(firstname);
-	        firstname.setColumns(10);
+	        name = new JTextField();
+	        name.setFont(new Font("Tahoma", Font.PLAIN, 32));
+	        name.setBounds(214, 151, 228, 50);
+	        contentPane.add(name);
+	        name.setColumns(10);
 
-	        lastname = new JTextField();
-	        lastname.setFont(new Font("Tahoma", Font.PLAIN, 32));
-	        lastname.setBounds(214, 235, 228, 50);
-	        contentPane.add(lastname);
-	        lastname.setColumns(10);
+	        patientName = new JTextField();
+	        patientName.setFont(new Font("Tahoma", Font.PLAIN, 32));
+	        patientName.setBounds(214, 235, 228, 50);
+	        contentPane.add(patientName);
+	        patientName.setColumns(10);
 
 	        email = new JTextField();
 
@@ -93,16 +93,16 @@ public class Registration extends JFrame {
 	        lblPassword.setBounds(542, 245, 99, 24);
 	        contentPane.add(lblPassword);
 
-	        JLabel lblMobileNumber = new JLabel("Mobile number");
+	        JLabel lblMobileNumber = new JLabel("Account Type");
 	        lblMobileNumber.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	        lblMobileNumber.setBounds(542, 329, 139, 26);
 	        contentPane.add(lblMobileNumber);
 
-	        mob = new JTextField();
-	        mob.setFont(new Font("Tahoma", Font.PLAIN, 32));
-	        mob.setBounds(707, 320, 228, 50);
-	        contentPane.add(mob);
-	        mob.setColumns(10);
+	        accountType = new JTextField();
+	        accountType.setFont(new Font("Tahoma", Font.PLAIN, 32));
+	        accountType.setBounds(707, 320, 228, 50);
+	        contentPane.add(accountType);
+	        accountType.setColumns(10);
 
 	        passwordField = new JPasswordField();
 	        passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
@@ -112,25 +112,22 @@ public class Registration extends JFrame {
 	        btnNewButton = new JButton("Register");
 	        btnNewButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                String firstName = firstname.getText();
-	                String lastName = lastname.getText();
+	                String  user= name.getText();
+	                String patientname = patientName.getText();
 	                String emailId = email.getText();
 	                String userName = username.getText();
-	                String mobileNumber = mob.getText();
-	                int len = mobileNumber.length();
+	                String accounttype = accountType.getText();
+	                
 	                String password = passwordField.getText();
 
-	                String msg = "" + firstName;
+	                String msg = "" + user;
 	                msg += " \n";
-	                if (len != 10) {
-	                    JOptionPane.showMessageDialog(btnNewButton, "Enter a valid mobile number");
-	                }
 
 	                try {
 	                    Connection connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
 
-	                    String query = "INSERT INTO account values('" + firstName + "','" + lastName + "','" + userName + "','" +
-	                        password + "','" + emailId + "','" + mobileNumber + "')";
+	                    String query = "INSERT INTO account values('" + user + "','" + patientname + "','" + userName + "','" +
+	                        password + "','" + emailId + "','" + accounttype + "')";
 
 	                    Statement sta = connection.createStatement();
 	                    int x = sta.executeUpdate(query);
