@@ -196,114 +196,12 @@ public class Home_Nurse extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == btnAddPic) {
 			btnAddPic.setBackground(Color.orange);
-			
+			java.awt.EventQueue.invokeLater(new Runnable() {
+	            public void run() {
+	                new WebAppImg().setVisible(true);
+	            }
+	        });
 		    }
 		}
-		
-//    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-//        JFileChooser chooser = new JFileChooser();
-//        chooser.showOpenDialog(null);
-//        File f = chooser.getSelectedFile();
-//        String filename = f.getAbsolutePath();
-//        jTextField1.setText(filename);
-//        try {
-//            ImageIcon ii=new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
-//            jLabel1.setIcon(ii);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
-//
-//    public static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
-//        BufferedImage bi;
-//        bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
-//        Graphics2D g2d = (Graphics2D) bi.createGraphics();
-//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
-//        g2d.drawImage(img, 0, 0, w, h, null);
-//        g2d.dispose();
-//        return bi;
-//    }
-//    
-//    ///////////
-//    
-//    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-//        // TODO add your handling code here:
-//    }
-//
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(WebAppImg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(WebAppImg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(WebAppImg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(WebAppImg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new WebAppImg().setVisible(true);
-//            }
-//        });
-//        //Create a file chooser
-//
-//    }
-//    // Variables declaration - do not modify
-//    private javax.swing.JButton jButton1;
-//    private javax.swing.JLabel jLabel1;
-//    private javax.swing.JTextField jTextField1;
-//    // End of variables declaration
-	
-
 }
-
-
-	
-//	else if (e.getSource() == btnAddPic) {
-//		btnAddPic.setBackground(Color.orange);
-//		JFileChooser chooser = new JFileChooser();
-//	    chooser.showOpenDialog(null);
-//	    File f = chooser.getSelectedFile();
-//	    String filename = f.getAbsolutePath();
-//	    jTextField1.setText(filename);
-//	    try {
-//	        ImageIcon ii=new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
-//	        jLabel1.setIcon(ii);
-//	    } catch (Exception ex) {
-//	        ex.printStackTrace();
-//	    }
-//	}
-	
-	
-	
-	
-//	private BufferedImage scaleImage(int i, int j, BufferedImage read) {
-//		// TODO Auto-generated method stub
-//		BufferedImage bi;
-//	    bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
-//	    Graphics2D g2d = (Graphics2D) bi.createGraphics();
-//	    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//	    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
-//	    g2d.drawImage(img, 0, 0, w, h, null);
-//	    g2d.dispose();
-//	    return bi;
-//	}
+		
