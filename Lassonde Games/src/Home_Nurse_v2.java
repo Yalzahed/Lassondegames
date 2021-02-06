@@ -30,18 +30,7 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home_Nurse_v2 frame = new Home_Nurse_v2();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -153,6 +142,7 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		panel_5.add(btnNewButton_1);
+		this.setVisible(true);
 	}
 	
 	@Override
