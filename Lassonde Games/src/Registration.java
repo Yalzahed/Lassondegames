@@ -127,7 +127,7 @@ public class Registration extends JFrame {
 	                }
 
 	                try {
-	                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo", "root", "password");
+	                    Connection connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
 
 	                    String query = "INSERT INTO account values('" + firstName + "','" + lastName + "','" + userName + "','" +
 	                        password + "','" + emailId + "','" + mobileNumber + "')";
