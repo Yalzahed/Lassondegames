@@ -19,9 +19,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import javax.swing.Box;
 import java.awt.Component;
+import javax.swing.JTextField;
 
-public class Home_Nurse_v2 extends JFrame implements ActionListener {
+public class Uploading_Pic extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7632143069038592752L;
 	/**
 	 * 
 	 */
@@ -34,7 +39,7 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home_Nurse_v2 frame = new Home_Nurse_v2();
+					Uploading_Pic frame = new Uploading_Pic();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,10 +57,12 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 	JButton btnChat;
 	JButton btnHealthHist;
 	JButton btnPatients;
-	JButton btnAddPic;
+	JButton btnCancel;
+	JButton btnUpload;
+	private JTextField textField;
 	
 	
-	public Home_Nurse_v2() {
+	public Uploading_Pic() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 800);
 		contentPane = new JPanel();
@@ -83,18 +90,18 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblHome = new JLabel("Home");
-		lblHome.setBounds(606, 5, 61, 30);
+		JLabel lblHome = new JLabel("Uploading a Post");
+		lblHome.setBounds(504, 5, 281, 30);
 		lblHome.setToolTipText("");
 		lblHome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHome.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		panel.add(lblHome);
 		
-		btnAddPic = new JButton("+ Pic");
-		btnAddPic.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 20));
-		btnAddPic.setBounds(1121, 0, 93, 48);
-		btnAddPic.addActionListener(this);
-		panel.add(btnAddPic);
+		btnCancel = new JButton("Cancel");
+		btnCancel.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 20));
+		btnCancel.setBounds(1104, 2, 135, 37);
+		btnCancel.addActionListener(this);
+		panel.add(btnCancel);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(5, 606, 1273, 88);
@@ -132,27 +139,29 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 		btnHome.addActionListener(this);
 		panel_3.add(btnHome);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(5, 117, 1273, 475);
-		contentPane.add(scrollPane);
-		
 		JPanel panel_1 = new JPanel();
-		scrollPane.setViewportView(panel_1);
+		panel_1.setBounds(5, 117, 1273, 478);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 		
-		Box verticalBox = Box.createVerticalBox();
-		panel_1.add(verticalBox);
+		JLabel lblCaption = new JLabel("Add a caption for your photo");
+		lblCaption.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 18));
+		lblCaption.setBounds(373, 344, 367, 34);
+		panel_1.add(lblCaption);
+		
+		textField = new JTextField();
+		textField.setBounds(366, 389, 531, 78);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		btnUpload = new JButton("Upload Photo");
+		btnUpload.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
+		btnUpload.setBounds(551, 280, 204, 34);
+		panel_1.add(btnUpload);
 		
 		JPanel panel_4 = new JPanel();
-		verticalBox.add(panel_4);
-		
-		JButton btnNewButton = new JButton("New button");
-		panel_4.add(btnNewButton);
-		
-		JPanel panel_5 = new JPanel();
-		verticalBox.add(panel_5);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		panel_5.add(btnNewButton_1);
+		panel_4.setBounds(366, 11, 531, 258);
+		panel_1.add(panel_4);
 	}
 	
 	@Override
@@ -172,11 +181,34 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 		else if (e.getSource() == btnPatients) {
 			btnPatients.setBackground(Color.orange);
 		}
-		else if (e.getSource() == btnAddPic) {
-			btnAddPic.setBackground(Color.orange);
+		else if (e.getSource() == btnCancel) {
+			btnCancel.setBackground(Color.orange);
 		}
 		
+		private void jbtnUploadActionPerformed(java.awt.event.ActionEvent evt) {
+		    JFileChooser chooser = new JFileChooser();
+		    chooser.showOpenDialog(null);
+		    File f = chooser.getSelectedFile();
+		    String filename = f.getAbsolutePath();
+		    jTextField1.setText(filename);
+		    try {
+		        ImageIcon ii=new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
+		        jLabel1.setIcon(ii);
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		    }
+		}
+
+		public static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
+		    BufferedImage bi;
+		    bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
+		    Graphics2D g2d = (Graphics2D) bi.createGraphics();
+		    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+		    g2d.drawImage(img, 0, 0, w, h, null);
+		    g2d.dispose();
+		    return bi;
+		}
 		
 	}
-	
 }
