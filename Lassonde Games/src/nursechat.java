@@ -26,6 +26,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class nursechat extends JFrame implements ActionListener {
+	JButton button_4;
 	/**
 	 * 
 	 */
@@ -104,7 +105,7 @@ public class nursechat extends JFrame implements ActionListener {
 	panel_8.setBorder(new EmptyBorder(0, 15, 00, 15));
 	horizontalBox.add(panel_8);
 
-	JButton button_4 = new JButton("New button");
+	button_4 = new JButton("Home");
 	button_4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 	button_4.setBorder(new EmptyBorder(15, 25, 15, 25));
 	panel_8.add(button_4);
@@ -185,7 +186,12 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 }
-
+	
+	if (e.getSource() == button_4) {
+		this.setVisible(false);
+		new Home_Nurse();
+		
+	}
 }
 
 }

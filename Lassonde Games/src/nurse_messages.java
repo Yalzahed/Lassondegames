@@ -112,6 +112,7 @@ public class nurse_messages extends JFrame implements ActionListener{
 		 btnHome = new JButton("Home");
 		btnHome.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnHome.setBorder(new EmptyBorder(15, 25, 15, 25));
+		btnHome.addActionListener(this);
 		panel_8.add(btnHome);
 
 		JPanel panel_7 = new JPanel();

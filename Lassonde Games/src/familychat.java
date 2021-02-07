@@ -86,10 +86,7 @@ public class familychat extends JFrame implements ActionListener {
 		horizontalBox.add(panel_4);
 
 		 btnAppointment = new JButton("Appointment");
-		btnAppointment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnAppointment.addActionListener(this);
 		btnAppointment.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnAppointment.setBorder(new EmptyBorder(15, 25, 15, 25));
 		panel_4.add(btnAppointment);
@@ -110,6 +107,7 @@ public class familychat extends JFrame implements ActionListener {
 		btnHome = new JButton("Home");
 		btnHome.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnHome.setBorder(new EmptyBorder(15, 25, 15, 25));
+		btnHome.addActionListener(this);
 		panel_8.add(btnHome);
 
 		JPanel panel_7 = new JPanel();

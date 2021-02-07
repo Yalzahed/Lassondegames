@@ -91,10 +91,9 @@ public class familypage extends JFrame implements ActionListener {
 		horizontalBox.add(panel_4);
 		
 		 btnAppointment = new JButton("Appointment");
-		btnAppointment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnAppointment.addActionListener(this);
+	
+		
 		btnAppointment.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnAppointment.setBorder(new EmptyBorder(15, 25, 15, 25));
 		panel_4.add(btnAppointment);
