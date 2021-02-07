@@ -150,6 +150,7 @@ public class nurse_messages extends JFrame implements ActionListener{
 			String GetInfo = "Select * from chat_tables";
 			 Statement sta = connection.createStatement();
         	ResultSet result = sta.executeQuery(GetInfo);
+        	
         	List<String> arr= new ArrayList<String>();
         	int i =0;
         	while(result.next()) {
@@ -199,6 +200,7 @@ public class nurse_messages extends JFrame implements ActionListener{
         	else {
         		System.out.println("exeeced the number of chats for this demo");
         	}
+        	connection.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

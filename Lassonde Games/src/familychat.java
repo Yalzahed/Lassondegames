@@ -173,12 +173,14 @@ public class familychat extends JFrame implements ActionListener {
 				String query = "INSERT INTO " + Users.userName+"_chat values( "+Users.random()+" ,' nurse ','" + textArea.getText() + "')";
 				Statement sta = connection.createStatement();
 				int x = sta.executeUpdate(query);
+				
 				 if (x == 0) {
 					 System.out.println("message was not uploaded");
 				 }
 				 else {
 					 System.out.println("message sent");
 				 }
+				 connection.close();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

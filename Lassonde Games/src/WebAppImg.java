@@ -2,6 +2,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -122,6 +129,16 @@ public class WebAppImg extends javax.swing.JFrame {
         JButton btnPost = new JButton();
         btnPost.setText("Post");
         btnPost.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
+        btnPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+					postevent(evt);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
         panel_7.add(btnPost);
                 GridBagLayout gbl_panel_1 = new GridBagLayout();
                 gbl_panel_1.columnWidths = new int[]{85, 403, 85, 0};
@@ -186,7 +203,64 @@ public class WebAppImg extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+    private void postevent(java.awt.event.ActionEvent evt) throws FileNotFoundException {
+    	 File image = new File(jTextField1.getText());
+        
+			FileInputStream fis = new FileInputStream ( image );
+			String caption = textField.getText();
+			String patientName =textField_2.getText();
+			
+				Connection connection;
+				try {
+					connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
+					Statement sta = connection.createStatement();
+					String SQL 
+		            = "INSERT INTO content "
+		              + "(patient, Id, "
+		              + "Image, caption) values (?, ?, ?, ?)"; 
+					 int row = 0; 
 
+				        PreparedStatement preparedStatement; 
+				        try { 
+				            preparedStatement 
+				                = connection.prepareStatement(SQL); 
+				  
+				            preparedStatement 
+				                .setString(1, patientName); 
+				  
+				            preparedStatement 
+				                .setInt(2, Users.random()); 
+				            if (fis != null) { 
+				            	  
+				                // Fetches the input stream 
+				                // of the upload file for 
+				                // the blob column 
+				                preparedStatement.setBlob(3, fis); 
+				            }
+				            preparedStatement 
+			                .setString(4, caption); 
+				            row = preparedStatement 
+				                      .executeUpdate(); 
+				            connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			
+			        
+					
+		} 
+    	
+    
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
@@ -197,9 +271,14 @@ public class WebAppImg extends javax.swing.JFrame {
             ImageIcon ii= new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(f.getAbsolutePath()))));//get the image from file chooser and scale it to match JLabel size
             jLabel1.setIcon(ii);
             System.out.println(f.getAbsolutePath());
-            System.out.println(jTextField1.getText());
-            System.out.println(textField.getText());
-            System.out.println(textField_2.getText());
+            
+            File image = new File(f.getAbsolutePath());
+            FileInputStream fis = new FileInputStream ( image );
+            
+            System.out.println(jTextField1.getText()); 
+            System.out.println(textField.getText());  //patient name 
+            System.out.println(textField_2.getText());// caption
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -209,6 +288,7 @@ public class WebAppImg extends javax.swing.JFrame {
         BufferedImage bi;
         bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
         Graphics2D g2d = (Graphics2D) bi.createGraphics();
+        
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
         g2d.drawImage(img, 0, 0, w, h, null);
