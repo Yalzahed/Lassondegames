@@ -26,7 +26,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class familychat extends JFrame implements ActionListener {
-
+	JButton btnAppointment;
+	JButton btnHome;
 	private JPanel contentPane;
 	JButton btnNewButton;
 	JTextArea textArea;
@@ -84,50 +85,50 @@ public class familychat extends JFrame implements ActionListener {
 		panel_4.setBorder(new EmptyBorder(0, 30, 0, 15));
 		horizontalBox.add(panel_4);
 
-		JButton button = new JButton("New button");
-		button.addActionListener(new ActionListener() {
+		 btnAppointment = new JButton("Appointment");
+		btnAppointment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		button.setBorder(new EmptyBorder(15, 25, 15, 25));
-		panel_4.add(button);
+		btnAppointment.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		btnAppointment.setBorder(new EmptyBorder(15, 25, 15, 25));
+		panel_4.add(btnAppointment);
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBorder(new EmptyBorder(0, 15, 00, 15));
 		horizontalBox.add(panel_6);
 
-		JButton button_2 = new JButton("New button");
-		button_2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		button_2.setBorder(new EmptyBorder(15, 25, 15, 25));
-		panel_6.add(button_2);
+		JButton btnHealthHistory = new JButton("Health History");
+		btnHealthHistory.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		btnHealthHistory.setBorder(new EmptyBorder(15, 25, 15, 25));
+		panel_6.add(btnHealthHistory);
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setBorder(new EmptyBorder(0, 15, 00, 15));
 		horizontalBox.add(panel_8);
 
-		JButton button_4 = new JButton("New button");
-		button_4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		button_4.setBorder(new EmptyBorder(15, 25, 15, 25));
-		panel_8.add(button_4);
+		btnHome = new JButton("Home");
+		btnHome.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		btnHome.setBorder(new EmptyBorder(15, 25, 15, 25));
+		panel_8.add(btnHome);
 
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new EmptyBorder(0, 15, 00, 15));
 		horizontalBox.add(panel_7);
 
-		JButton button_3 = new JButton("New button");
-		button_3.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		button_3.setBorder(new EmptyBorder(15, 25, 15, 25));
-		panel_7.add(button_3);
+		JButton btnChat = new JButton("Chat");
+		btnChat.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		btnChat.setBorder(new EmptyBorder(15, 25, 15, 25));
+		panel_7.add(btnChat);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new EmptyBorder(0, 15, 00, 30));
 		horizontalBox.add(panel_5);
 
-		JButton button_1 = new JButton("New button");
-		button_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		button_1.setBorder(new EmptyBorder(15, 25, 15, 25));
-		panel_5.add(button_1);
+		JButton btnSettings = new JButton("Settings");
+		btnSettings.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		btnSettings.setBorder(new EmptyBorder(15, 25, 15, 25));
+		panel_5.add(btnSettings);
 
 		JPanel ContentPanel = new JPanel();
 		JScrollPane scrollPane = new JScrollPane(ContentPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
@@ -187,7 +188,14 @@ public class familychat extends JFrame implements ActionListener {
 			}
 			
 	}
-
+		if  (e.getSource() == btnAppointment) {
+			this.setVisible(false);
+			new Appointments();
+		}
+		if(e.getSource() ==btnHome) {
+			this.setVisible(false);
+			new familypage();
+		}
 }
 
 }

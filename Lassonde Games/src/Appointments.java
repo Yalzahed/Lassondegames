@@ -29,18 +29,6 @@ public class Appointments extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Appointments frame = new Appointments();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 
 	/**
@@ -242,6 +230,7 @@ public class Appointments extends JFrame implements ActionListener {
 		gbc_btnNewButton.gridy = 4;
 		panel_1.add(btnSubmit, gbc_btnNewButton);
 		btnSubmit.addActionListener(this);
+		this.setVisible(true);
 
 
 
