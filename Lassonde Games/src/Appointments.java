@@ -76,7 +76,7 @@ public class Appointments extends JFrame implements ActionListener {
 		gbc_panelPimps.gridx = 15;
 		gbc_panelPimps.gridy = 0;
 		panel.add(panelPimps, gbc_panelPimps);
-		JLabel lblPimps = new JLabel("PIMPS");
+		JLabel lblPimps = new JLabel("HelloGran");
 		lblPimps.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 28));
 		panelPimps.add(lblPimps);
 

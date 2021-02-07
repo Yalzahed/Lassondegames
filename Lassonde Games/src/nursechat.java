@@ -55,7 +55,7 @@ public class nursechat extends JFrame implements ActionListener {
 	JPanel panel_1 = new JPanel();
 	verticalBox.add(panel_1);
 
-	JLabel label = new JLabel("PIMPS");
+	JLabel label = new JLabel("HelloGran");
 	label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 28));
 	panel_1.add(label);
 
@@ -108,6 +108,10 @@ public class nursechat extends JFrame implements ActionListener {
 	button_4 = new JButton("Home");
 	button_4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 	button_4.setBorder(new EmptyBorder(15, 25, 15, 25));
+	button_4.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		}
+	});
 	panel_8.add(button_4);
 
 	JPanel panel_7 = new JPanel();

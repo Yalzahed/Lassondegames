@@ -57,7 +57,7 @@ public class familychat extends JFrame implements ActionListener {
 		JPanel panel_1 = new JPanel();
 		verticalBox.add(panel_1);
 
-		JLabel label = new JLabel("PIMPS");
+		JLabel label = new JLabel("HelloGran");
 		label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 28));
 		panel_1.add(label);
 

@@ -79,7 +79,7 @@ public class Home_Nurse extends JFrame implements ActionListener {
 		gbc_panelPimps.gridx = 15;
 		gbc_panelPimps.gridy = 0;
 		panel.add(panelPimps, gbc_panelPimps);
-		JLabel lblPimps = new JLabel("PIMPS");
+		JLabel lblPimps = new JLabel("HelloGran");
 		lblPimps.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 28));
 		panelPimps.add(lblPimps);
 		
@@ -169,8 +169,7 @@ public class Home_Nurse extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnHome) {
 			btnHome.setBackground(Color.orange);
-			this.setVisible(false);
-			new Appointments();
+			
 		}
 		else if (e.getSource() == btnAppoint) {
 			btnAppoint.setBackground(Color.orange);
