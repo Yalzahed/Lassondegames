@@ -52,15 +52,16 @@ public class Appointments extends JFrame implements ActionListener {
 	JButton btnChat;
 	JButton btnHealthHist;
 	JButton btnPatients;
-	JButton btnAddPic;
 	JComboBox Time;
 	JComboBox ts;
 	String tsm;
 	JComboBox Date;
 	JComboBox ds;
 	String dsm;
-	
-	
+	JLabel lblTime_1;
+	JLabel lblTime_2;
+
+
 	public Appointments() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 800);
@@ -100,15 +101,6 @@ public class Appointments extends JFrame implements ActionListener {
 		JLabel lblHome = new JLabel("APPOINTMENTS");
 		lblHome.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		panelHome.add(lblHome);
-
-		btnAddPic = new JButton("+ Pic");
-		GridBagConstraints gbc_btnAddPic = new GridBagConstraints();
-		gbc_btnAddPic.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAddPic.gridx = 29;
-		gbc_btnAddPic.gridy = 1;
-		panel.add(btnAddPic, gbc_btnAddPic);
-		btnAddPic.addActionListener(this);
-		btnAddPic.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 
 		/////////////////////////////////////////////////////////
 		//		Footer
@@ -171,7 +163,7 @@ public class Appointments extends JFrame implements ActionListener {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 79, 109, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{73, 79, 109, 98, 98, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
@@ -184,23 +176,23 @@ public class Appointments extends JFrame implements ActionListener {
 		gbc_panel_9.gridx = 2;
 		gbc_panel_9.gridy = 1;
 		panel_1.add(panel_9, gbc_panel_9);		
-		
 
-		
+
+
 		String[] DSlots = { "Pick your prefered date", "Sun 7th of Feb, 2021", "Mon 8th of Feb, 2021", "Tues 9th of Feb, 2021", "Wed 10th of Feb, 2021", "Thurs 11th of Feb, 2021", "Fri 12th of Feb, 2021", "Sat 13th of Feb, 2021", "Sun 14th of Feb, 2021"};
 		Date = new JComboBox(DSlots);
 		panel_9.add(Date);
 		Date.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 18));
-		Date.setBounds(37, 11, 253, 44);
+		Date.setBounds(97, 11, 253, 44);
 		Date.setSelectedIndex(0);
 		Date.addActionListener(this);
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -213,7 +205,7 @@ public class Appointments extends JFrame implements ActionListener {
 		String[] TSlots = { "Pick your prefered time slot", "8 am to 9 am", "9 am to 10 am", "10 am to 11 am", "11 am to 12 pm", "12 pm to 1 pm", "1 pm to 2 pm", "2 pm to 3 pm", "3 pm to 4 pm", "4 pm to 5 pm", "5 pm to 6 pm", "6 pm to 7 pm", "7 pm to 8 pm"};
 		Time = new JComboBox(TSlots);
 		Time.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 18));
-		Time.setBounds(37, 11, 253, 44);
+		Time.setBounds(97, 11, 253, 44);
 		panel_3.add(Time);
 		Time.setSelectedIndex(0);
 		Time.addActionListener(this);
@@ -226,10 +218,21 @@ public class Appointments extends JFrame implements ActionListener {
 		gbc_panel_2.gridy = 3;
 		panel_1.add(panel_2, gbc_panel_2);
 
-		JLabel lblTime = new JLabel("New label");
+		Box verticalBox = Box.createVerticalBox();
+		panel_2.add(verticalBox);
+
+		JLabel lblTime = new JLabel("You have chosen to meet up");
 		lblTime.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 17));
-		panel_2.add(lblTime);
-		
+		verticalBox.add(lblTime);
+
+		lblTime_1 = new JLabel("");
+		lblTime_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 17));
+		verticalBox.add(lblTime_1);
+
+		lblTime_2 = new JLabel("");
+		lblTime_2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 17));
+		verticalBox.add(lblTime_2);
+
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setVerticalAlignment(SwingConstants.TOP);
 		btnSubmit.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 18));
@@ -262,28 +265,61 @@ public class Appointments extends JFrame implements ActionListener {
 		else if (e.getSource() == btnPatients) {
 			btnPatients.setBackground(Color.orange);
 		}
-		else if (e.getSource() == btnAddPic) {
-			btnAddPic.setBackground(Color.orange);
-			java.awt.EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					new WebAppImg().setVisible(true);
-				}
-			});
-		}
 		else if (e.getSource() == Time) {
 			Time.setBackground(Color.orange);
 			ts = (JComboBox)e.getSource();
 			tsm = (String)ts.getSelectedItem();	
 			switch(tsm) {
-			case "8 am to 9 am"
+			case "8 am to 9 am" : lblTime_1.setText(" from 8 am to 9 am");
+			break;
+			case "9 am to 10 am" : lblTime_1.setText(" from 9 am to 10 am");
+			break;
+			case "10 am to 11 am" : lblTime_1.setText(" from 10 am to 11 am");
+			break;
+			case "11 am to 12 pm" : lblTime_1.setText(" from 11 am to 12 pm");
+			break;
+			case "12 pm to 1 pm" : lblTime_1.setText(" from 12 pm to 1 pm");
+			break;
+			case "1 pm to 2 pm" : lblTime_1.setText(" from 1 pm to 2 pm");
+			break;
+			case "2 pm to 3 pm" : lblTime_1.setText(" from 2 pm to 3 pm");
+			break;
+			case "3 pm to 4 pm" : lblTime_1.setText(" from 3 pm to 4 pm");
+			break;
+			case "4 pm to 5 pm" : lblTime_1.setText(" from 4 pm to 5 pm");
+			break;
+			case "5 pm to 6 pm" : lblTime_1.setText(" from 5 pm to 6 pm");
+			break;
+			case "6 pm to 7 pm" : lblTime_1.setText(" from 6 pm to 7 pm");
+			break;
+			case "7 pm to 8 pm" : lblTime_1.setText(" from 7 pm to 8 pm");
+			break;
 			}
 		}
 		else if (e.getSource() == Date) {
 			Date.setBackground(Color.orange);
 			ds = (JComboBox)e.getSource();
 			dsm = (String)ds.getSelectedItem();	
+			switch(dsm) {
+			case "Sun 7th of Feb, 2021" : lblTime_2.setText("on Sunday 7th of Feb, 2021");
+			break;
+			case "Mon 8th of Feb, 2021" : lblTime_2.setText("on Monday 8th of Feb, 2021");
+			break;
+			case "Tues 9th of Feb, 2021" : lblTime_2.setText("on Tuesday 9th of Feb, 2021");
+			break;
+			case "Wed 10th of Feb, 2021" : lblTime_2.setText("on Wednesday 10th of Feb, 2021");
+			break;
+			case "Thurs 11th of Feb, 2021" : lblTime_2.setText("on Thursday 11th of Feb, 2021");
+			break;
+			case "Fri 12th of Feb, 2021" : lblTime_2.setText("on Friday 12th of Feb, 2021");
+			break;
+			case "Sat 13th of Feb, 2021" : lblTime_2.setText("on Saturday 13th of Feb, 2021");
+			break;
+			case "Sun 14th of Feb, 2021" : lblTime_2.setText("on Sunday 14th of Feb, 2021");
+			break;
+			}
 		}
-		
+
 	}
 }
 
