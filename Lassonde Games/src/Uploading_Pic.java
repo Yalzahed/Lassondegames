@@ -35,18 +35,7 @@ public class Uploading_Pic extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Uploading_Pic frame = new Uploading_Pic();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -163,6 +152,7 @@ public class Uploading_Pic extends JFrame implements ActionListener {
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(366, 11, 531, 258);
 		panel_1.add(panel_4);
+		this.setVisible(true);
 	}
 	
 	@Override
@@ -189,7 +179,7 @@ public class Uploading_Pic extends JFrame implements ActionListener {
 			btnUpload.setBackground(Color.orange);
 			java.awt.EventQueue.invokeLater(new Runnable() {
 	            public void run() {
-	                new WebAppImg().setVisible(true);
+//	                new WebAppImg().setVisible(true);
 	            }
 	        });
 		}

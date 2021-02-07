@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
@@ -16,8 +18,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class Registration extends JFrame {
+public class Registration extends JFrame implements ActionListener{
 	  private static final long serialVersionUID = 1L;
+	  	
 	    private JPanel contentPane;
 	    private JTextField name;
 	    private JTextField patientName;
@@ -110,43 +113,81 @@ public class Registration extends JFrame {
 	        contentPane.add(passwordField);
 
 	        btnNewButton = new JButton("Register");
-	        btnNewButton.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	                String  user= name.getText();
-	                String patientname = patientName.getText();
-	                String emailId = email.getText();
-	                String userName = username.getText();
-	                String accounttype = accountType.getText();
-	                
-	                String password = passwordField.getText();
-
-	                String msg = "" + user;
-	                msg += " \n";
-
-	                try {
-	                    Connection connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
-
-	                    String query = "INSERT INTO account values('" + user + "','" + patientname + "','" + userName + "','" +
-	                        password + "','" + emailId + "','" + accounttype + "')";
-
-	                    Statement sta = connection.createStatement();
-	                    int x = sta.executeUpdate(query);
-	                    if (x == 0) {
-	                        JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
-	                    } else {
-	                        JOptionPane.showMessageDialog(btnNewButton,
-	                            "Welcome, " + msg + "Your account is sucessfully created");
-	                    }
-	                    connection.close();
-	                } catch (Exception exception) {
-	                    exception.printStackTrace();
-	                }
-	            }
-	        });
+	        btnNewButton.addActionListener(this);
+	            
+	        
 	        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
 	        btnNewButton.setBounds(399, 447, 259, 74);
 	        contentPane.add(btnNewButton);
 	     this.setVisible(true);   
 	    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String  user= name.getText();
+        String patientname = patientName.getText();
+        String emailId = email.getText();
+        String userName = username.getText();
+        String accounttype = accountType.getText();
+        
+        String password = passwordField.getText();
+
+        String msg = "" + user;
+        msg += " \n";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
+
+            String query = "INSERT INTO account values('" + user + "','" + patientname + "','" + userName + "','" +
+                password + "','" + emailId + "','" + accounttype + "')";
+
+            Statement sta = connection.createStatement();
+            int x = sta.executeUpdate(query);
+            if (x == 0) {
+                JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
+            } else {
+            	 String ifNurse = "Select * from account Where user_name='" + userName + "' and password='" + password + "'" +" and account_type='Nurse'";
+                 ResultSet y = sta.executeQuery(ifNurse);
+                 if(y.next()) {
+                	 JOptionPane.showMessageDialog(btnNewButton,
+                             "Welcome, " + msg + "Your account is sucessfully created");
+                         connection.close();
+                 }
+                 else {
+                	 String myTableName = "CREATE TABLE "+userName+"_chat (" 
+                	            + "idNo INT(64) NOT NULL AUTO_INCREMENT,"  
+                	            + "reciever varchar(250) NOT NULL," 
+                	            + "user_message varchar(1000),"
+                	            + "primary key (idNo))"
+                	            ;
+                	 String intoChatTable = "INSERT INTO chat_tables values('" + userName+"_chat', "+Users.random()+")";
+                	 try {
+                		 sta.executeUpdate(myTableName);
+                		 sta.executeUpdate(intoChatTable);
+                		 System.out.println("Table Created");
+                	 }
+                	 catch (SQLException e1 ) {
+                	        System.out.println("An error has occured on Table Creation");
+                	        e1.printStackTrace();
+                	    }
+                	 connection.close();
+                	 
+                 }
+                 
+                 
+                JOptionPane.showMessageDialog(btnNewButton,
+                    "Welcome, " + msg + "Your account is sucessfully created");
+                connection.close();
+                this.setVisible(false);
+                new login();
+                
+            }
+           
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+	}
+
 	
 	}

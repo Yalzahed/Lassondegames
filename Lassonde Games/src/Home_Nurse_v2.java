@@ -144,7 +144,7 @@ public class Home_Nurse_v2 extends JFrame implements ActionListener {
 		panel_5.add(btnNewButton_1);
 		this.setVisible(true);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnHome) {

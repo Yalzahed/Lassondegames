@@ -20,16 +20,22 @@ public class login extends JFrame implements ActionListener {
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("LOGIN");
-    JButton resetButton = new JButton("RESET");
+    JButton resetButton = new JButton("REGESTER");
     JCheckBox showPassword = new JCheckBox("Show Password");
+    Users user;
 
-
-    login() {
+    public login() {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
         this.setVisible(true);
+        this.setTitle("Login Form");
+        this.setVisible(true);
+        this.setSize(800,400);
+        this.setBounds(10, 10, 370, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
     }
 
@@ -38,6 +44,7 @@ public class login extends JFrame implements ActionListener {
     }
 
     public void setLocationAndSize() {
+    	
         userLabel.setBounds(50, 150, 100, 30);
         passwordLabel.setBounds(50, 220, 100, 30);
         userTextField.setBounds(150, 150, 150, 30);
@@ -74,20 +81,48 @@ public class login extends JFrame implements ActionListener {
             pwdText = passwordField.getText();
            try{
         	   Connection connection = DriverManager.getConnection("jdbc:mysql://uotdstg5jvrcd8yk:fVeY9ucgSAUtu76kmXub@bd6vfmkifafz8jqz771d-mysql.services.clever-cloud.com:3306/bd6vfmkifafz8jqz771d", "uotdstg5jvrcd8yk", "fVeY9ucgSAUtu76kmXub");
-               String query = "Select * from account Where user_='" + userText + "' and password='" + pwdText + "'";
+               String query = "Select * from account Where user_name='" + userText + "' and password='" + pwdText + "'";
                Statement sta = connection.createStatement();
                ResultSet x = sta.executeQuery(query);
                
             if (x.next()) {
                 JOptionPane.showMessageDialog(this, "Login Successful ");
-                String ifNurse = "Select * from account Where user_='" + userText + "' and password='" + pwdText + "'" +" and account_type='Nurse'";
+                String ifNurse = "Select * from account Where user_name='" + userText + "' and password='" + pwdText + "'" +" and account_type='Nurse'";
                 ResultSet y = sta.executeQuery(ifNurse);
                 if(y.next()) {
+                	String GetInfo = "Select * from account Where user_name='" + userText + "' and password='" + pwdText + "'";
+                	ResultSet result = sta.executeQuery(GetInfo);
+                	result.next();
+                	user = new Users();
+                	user.setName(result.getString(1));
+                	System.out.println(user.name);
+                	user.setPatient(result.getString(2));
+                	System.out.println(user.patient);
+                	user.setUserName(result.getString(3));
+                	System.out.println(user.userName);
+                	user.setEmail(result.getString(5));
+                	System.out.println(user.email);
+                	user.setType(result.getString(6));
+                	System.out.println(user.type);
                 	this.setVisible(false);
-                	new Home_Nurse_v2();
+                	new Home_Nurse();
                 	connection.close();
                 }
                 else {
+                	String GetInfo = "Select * from account Where user_name='" + userText + "' and password='" + pwdText + "'";
+                	ResultSet result = sta.executeQuery(GetInfo);
+                	result.next();
+                	user = new Users();
+                	user.setName(result.getString(1));
+                	System.out.println(user.name);
+                	user.setPatient(result.getString(2));
+                	System.out.println(user.patient);
+                	user.setUserName(result.getString(3));
+                	System.out.println(user.userName);
+                	user.setEmail(result.getString(5));
+                	System.out.println(user.email);
+                	user.setType(result.getString(6));
+                	System.out.println(user.type);
                 	this.setVisible(false);
                 	new familypage();
                 	connection.close();
@@ -123,8 +158,8 @@ public class login extends JFrame implements ActionListener {
         
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
-            userTextField.setText("");
-            passwordField.setText("");
+            this.setVisible(false);
+            new Registration();
         }
        //Coding Part of showPassword JCheckBox
         if (e.getSource() == showPassword) {
@@ -140,15 +175,5 @@ public class login extends JFrame implements ActionListener {
 
 }
 
- class Login {
-    public static void main(String[] a) {
-        login frame = new login();
-        frame.setTitle("Login Form");
-        frame.setVisible(true);
-        frame.setBounds(10, 10, 370, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
 
-    }
 
-}
