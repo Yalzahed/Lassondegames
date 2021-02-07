@@ -40,18 +40,6 @@ public class Home_Nurse extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home_Nurse frame = new Home_Nurse();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	
 	/**
@@ -174,7 +162,7 @@ public class Home_Nurse extends JFrame implements ActionListener {
 		btnPatients.setBorder(new EmptyBorder(15, 25, 15, 25));
 		btnPatients.addActionListener(this);
 		panel_8.add(btnPatients);
-		
+		this.setVisible(true);
 	}
 
 	@Override
@@ -186,7 +174,8 @@ public class Home_Nurse extends JFrame implements ActionListener {
 			btnAppoint.setBackground(Color.orange);
 		}
 		else if (e.getSource() == btnChat) {
-			btnChat.setBackground(Color.orange);
+			this.setVisible(false);
+			new nurse_messages();
 		}
 		else if (e.getSource() == btnHealthHist) {
 			btnHealthHist.setBackground(Color.orange);
@@ -196,11 +185,13 @@ public class Home_Nurse extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == btnAddPic) {
 			btnAddPic.setBackground(Color.orange);
+
 			java.awt.EventQueue.invokeLater(new Runnable() {
 	            public void run() {
 	                new WebAppImg().setVisible(true);
 	            }
 	        });
+
 		    }
 		}
 }
