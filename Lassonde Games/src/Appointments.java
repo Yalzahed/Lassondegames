@@ -101,7 +101,7 @@ public class Appointments extends JFrame implements ActionListener {
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new EmptyBorder(0, 30, 0, 15));
 		horizontalBox.add(panel_4);
-		btnHome = new JButton("Home");
+		btnHome = new JButton("Appointments");
 		btnHome.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnHome.setBorder(new EmptyBorder(15, 25, 15, 25));
 		btnHome.addActionListener(this);
@@ -111,7 +111,7 @@ public class Appointments extends JFrame implements ActionListener {
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new EmptyBorder(0, 15, 00, 15));
 		horizontalBox.add(panel_5);
-		btnAppoint = new JButton("Appointments");
+		btnAppoint = new JButton("Health History");
 		btnAppoint.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnAppoint.setBorder(new EmptyBorder(15, 25, 15, 25));
 		btnAppoint.addActionListener(this);
@@ -120,7 +120,7 @@ public class Appointments extends JFrame implements ActionListener {
 		JPanel panel_6 = new JPanel();
 		panel_6.setBorder(new EmptyBorder(0, 15, 00, 15));
 		horizontalBox.add(panel_6);
-		btnChat = new JButton("Chat");
+		btnChat = new JButton("Home");
 		btnChat.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnChat.setBorder(new EmptyBorder(15, 25, 15, 25));
 		btnChat.addActionListener(this);
@@ -129,7 +129,7 @@ public class Appointments extends JFrame implements ActionListener {
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new EmptyBorder(0, 15, 00, 15));
 		horizontalBox.add(panel_7);
-		btnHealthHist = new JButton("Health History");
+		btnHealthHist = new JButton("Chat");
 		btnHealthHist.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnHealthHist.setBorder(new EmptyBorder(15, 25, 15, 25));
 		btnHealthHist.addActionListener(this);
@@ -138,7 +138,7 @@ public class Appointments extends JFrame implements ActionListener {
 		JPanel panel_8 = new JPanel();
 		panel_8.setBorder(new EmptyBorder(0, 15, 00, 30));
 		horizontalBox.add(panel_8);
-		btnPatients = new JButton("Patients");
+		btnPatients = new JButton("Settings");
 		btnPatients.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		btnPatients.setBorder(new EmptyBorder(15, 25, 15, 25));
 		btnPatients.addActionListener(this);
@@ -241,15 +241,21 @@ public class Appointments extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnHome) {
 			btnHome.setBackground(Color.orange);
+			this.setVisible(false);
+			new Appointments();
 		}
 		else if (e.getSource() == btnAppoint) {
 			btnAppoint.setBackground(Color.orange);
 		}
 		else if (e.getSource() == btnChat) {
 			btnChat.setBackground(Color.orange);
+			this.setVisible(false);
+			new familypage();
 		}
 		else if (e.getSource() == btnHealthHist) {
 			btnHealthHist.setBackground(Color.orange);
+			this.setVisible(false);
+			new familychat();
 		}
 		else if (e.getSource() == btnPatients) {
 			btnPatients.setBackground(Color.orange);
